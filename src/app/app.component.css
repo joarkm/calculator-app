@@ -1,0 +1,9 @@
+* {
+  font-family: Lato;
+}
+
+.container {
+  display: grid;
+  place-content: center;
+  height: 100%;
+}
