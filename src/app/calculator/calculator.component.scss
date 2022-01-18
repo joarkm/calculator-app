@@ -10,8 +10,8 @@ $border-radius-size: 2px;
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1/4 * 100vw);
-    grid-auto-rows: (1/5 * 100vh);
+    grid-template-columns: repeat(4, calc(1 / 4 * 100vw));
+    grid-auto-rows: calc(1 /5 * 100vh);
 
     :first-child {
       border-top-left-radius: $border-radius-size;
