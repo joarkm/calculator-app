@@ -1,12 +1,12 @@
 <div class="calculator">
-  <div class="calculator__grid">
-    <div class="calculator__button calculator__empty-region"></div>
-    <div
+  <table class="calculator__grid">
+    <td class="calculator__button calculator__empty-region"></td>
+    <td
       *ngFor="let buttonKey of buttonKeys"
       class="calculator__button"
       [ngClass]="{ calculator__zero: buttonKey === '0' }"
     >
       <span>{{ buttonKey }}</span>
-    </div>
-  </div>
+  </td>
+  </table>
 </div>
