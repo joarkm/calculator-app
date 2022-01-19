@@ -51,7 +51,7 @@ export class CalculatorComponent implements OnInit {
     /3/,
     /\+/,
     /0/,
-    /,/,
+    /,|\./,
     /=/,
   ];
 
