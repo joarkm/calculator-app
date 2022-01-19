@@ -11,9 +11,10 @@
       [matRippleCentered]="true"
       *ngFor="let buttonKey of buttonKeys"
       class="calculator__button calculator__cell"
-      [ngClass]="{ calculator__zero: buttonKey === '0' }"
+      [ngClass]="{ calculator__zero: buttonKey.value === '0' }"
+      (click)="onButtonPressed(buttonKey.value)"
     >
-      <span>{{ buttonKey }}</span>
+      <span>{{ buttonKey.label }}</span>
     </div>
   </div>
 </div>
