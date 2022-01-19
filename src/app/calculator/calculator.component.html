@@ -1,12 +1,14 @@
 <div class="calculator">
-  <table class="calculator__grid">
-    <td class="calculator__button calculator__empty-region"></td>
-    <td
+  <div class="calculator__grid">
+    <div class="calculator__button calculator__empty-region"></div>
+    <div
+      matRipple
+      [matRippleCentered]="true"
       *ngFor="let buttonKey of buttonKeys"
       class="calculator__button"
       [ngClass]="{ calculator__zero: buttonKey === '0' }"
     >
       <span>{{ buttonKey }}</span>
-  </td>
-  </table>
+    </div>
+  </div>
 </div>
