@@ -14,13 +14,13 @@ $border-radius-size: 2px;
     justify-content: space-between;
     justify-items: center;
     align-items: center;
+    padding: 0 20px;
     height: 100%;
     border-color: white;
     border: 1px solid;
   }
 
   &__input {
-    margin-left: 50px;
     font-size: larger;
     font-family: monospace;
   }
