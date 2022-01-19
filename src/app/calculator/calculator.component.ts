@@ -1,5 +1,5 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { Component, HostListener, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { MatRipple } from '@angular/material/core';
 
 @Component({
   selector: 'app-calculator',
@@ -7,11 +7,13 @@ import { fromEvent } from 'rxjs';
   styleUrls: ['./calculator.component.scss'],
 })
 export class CalculatorComponent implements OnInit {
-  @HostListener('keydown', ['$event'])
+  @ViewChildren(MatRipple) ripples!: QueryList<MatRipple>;
+
+  @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) {
-    alert(event.key);
-    if (event.key === '1') {
-      console.log('1 pressed');
+    const buttonKeyIndex = this.findKeyIndex(event.key);
+    if (buttonKeyIndex !== -1) {
+      this.launchRipple(buttonKeyIndex);
     }
   }
 
@@ -34,9 +36,35 @@ export class CalculatorComponent implements OnInit {
     '=',
   ];
 
-  constructor(private element: ElementRef) {}
+  public buttonKeyRegexes: RegExp[] = [
+    /÷|\//,
+    /7/,
+    /8/,
+    /9/,
+    /x|\*/,
+    /4/,
+    /5/,
+    /6/,
+    /-/,
+    /1/,
+    /2/,
+    /3/,
+    /\+/,
+    /0/,
+    /,/,
+    /=/,
+  ];
+
+  constructor() {}
 
   ngOnInit() {
-    fromEvent(this.element.nativeElement, 'keydown').subscribe((e) => alert(e));
+  }
+
+  private launchRipple(index: number): void {
+    this.ripples.find((_,idx) => index === idx)?.launch({ centered: true });
+  }
+
+  private findKeyIndex(key: string): number {
+    return this.buttonKeyRegexes.findIndex(buttonKeyRegex => buttonKeyRegex.test(key));
   }
 }
