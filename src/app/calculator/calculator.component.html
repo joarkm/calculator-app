@@ -1,11 +1,16 @@
 <div class="calculator">
   <div class="calculator__grid">
-    <div class="calculator__button calculator__empty-region"></div>
+    <div class="calculator__expression">
+      <p class="calculator__input">
+          {{ expression }}
+      </p>
+      <p class="calculator__evaluated-value">{{ evaluatedValue === undefined ? '' : '= ' }}{{ evaluatedValue }}</p>
+    </div>
     <div
       matRipple
       [matRippleCentered]="true"
       *ngFor="let buttonKey of buttonKeys"
-      class="calculator__button"
+      class="calculator__button calculator__cell"
       [ngClass]="{ calculator__zero: buttonKey === '0' }"
     >
       <span>{{ buttonKey }}</span>

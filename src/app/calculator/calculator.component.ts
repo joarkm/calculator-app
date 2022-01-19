@@ -11,9 +11,16 @@ export class CalculatorComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   onKeyPress(event: KeyboardEvent) {
-    const buttonKeyIndex = this.findKeyIndex(event.key);
+    const { key } = event;
+    const buttonKeyIndex = this.findKeyIndex(key);
     if (buttonKeyIndex !== -1) {
       this.launchRipple(buttonKeyIndex);
+      this.expression += key;
+      if (this.isNumeric(key)) {
+        try {
+          this.evaluatedValue = eval(this.expression);
+        } catch {}
+      }
     }
   }
 
@@ -55,9 +62,16 @@ export class CalculatorComponent implements OnInit {
     /=/,
   ];
 
+  public expression = '';
+  public evaluatedValue: number | undefined;
+
   constructor() {}
 
   ngOnInit() {
+  }
+
+  private isNumeric(key: string): boolean {
+    return /[\d]/.test(key);
   }
 
   private launchRipple(index: number): void {
